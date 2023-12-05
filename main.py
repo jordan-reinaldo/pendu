@@ -27,7 +27,18 @@ text2 = font.render('Jeu du pendu', True, (0, 0, 0))
 text3 = font2.render(f'Il reste {9} tentatives', True, (0, 0, 0))
 
 # Chargement des images
-images = [pygame.image.load(f'images\\pendu{i}.jpg') for i in range(10)]
+images = [
+    pygame.image.load('images\\pendu0.jpg'),
+    pygame.image.load('images\\pendu1.jpg'),
+    pygame.image.load('images\\pendu2.jpg'),
+    pygame.image.load('images\\pendu3.jpg'),
+    pygame.image.load('images\\pendu4.jpg'),
+    pygame.image.load('images\\pendu5.jpg'),
+    pygame.image.load('images\\pendu6.jpg'),
+    pygame.image.load('images\\pendu7.jpg'),
+    pygame.image.load('images\\pendu8.jpg'),
+    pygame.image.load('images\\pendu9.jpg'),
+]
 
 # Paramètres du jeu
 tentatives_restantes = 9
