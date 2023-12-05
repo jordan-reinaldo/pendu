@@ -12,11 +12,26 @@ font = pygame.font.SysFont('arial', 35) #style des textes
 font2 = pygame.font.SysFont('arial', 25)
 font3 = pygame.font.SysFont('arial', 20) 
 
+def afficher_resultat(screen, gagne, mot):
+    screen.fill((255, 255, 255))  # Efface l'écran
+
+    if gagne:
+        message = "Victoire !"
+    else:
+        message = f"Défaite ! Le mot était: {mot}"
+
+    font_resultat = pygame.font.SysFont('arial', 35)
+    texte_resultat = font_resultat.render(message, True, (0, 0, 0))
+    screen.blit(texte_resultat, (100,200))
+
+    pygame.display.update()
+    pygame.time.wait(2000)  # Attente de 2 secondes avant de continuer
+
 def jouer_pendu():
 
     # Lire les mots du fichier, en enlevant les espaces et les sauts de ligne
     with open("mots.txt", "r") as fichier:
-        mots = [ligne.strip().replace(' ', '') for ligne in fichier]
+        mots = [ligne.strip() for ligne in fichier] #ligne.strip(): Enlève les espaces, les tabulations, et les sauts de ligne du début et de la fin de la ligne
 
     mot = random.choice(mots) #on utilise la biblo random pour choisir un mot aléatoirement dans le fichier mots.txt qu'on a chargé précédemment avec with open 
     mot_affiche_liste = ['_' for _ in mot]  # liste pour stocker les lettres trouvées
@@ -30,16 +45,16 @@ def jouer_pendu():
     #on met les images de notre dossier images dans une liste en les chargeant, cela permettra de faire évoluer l'indice des images sous certaines conditions 
     #pour que lorsque l'utilisateur se trompe, images[0] passe à images[1]
     images = [
-        pygame.image.load('images\\pendu0.jpg'),
-        pygame.image.load('images\\pendu1.jpg'),
-        pygame.image.load('images\\pendu2.jpg'),
-        pygame.image.load('images\\pendu3.jpg'),
-        pygame.image.load('images\\pendu4.jpg'),
-        pygame.image.load('images\\pendu5.jpg'),
-        pygame.image.load('images\\pendu6.jpg'),
-        pygame.image.load('images\\pendu7.jpg'),
-        pygame.image.load('images\\pendu8.jpg'),
-        pygame.image.load('images\\pendu9.jpg'),
+        pygame.image.load('images\\pendu0.jpg'), #[0]
+        pygame.image.load('images\\pendu1.jpg'), #[1]
+        pygame.image.load('images\\pendu2.jpg'), #[2]
+        pygame.image.load('images\\pendu3.jpg'), #[3]
+        pygame.image.load('images\\pendu4.jpg'), #[4]
+        pygame.image.load('images\\pendu5.jpg'), #[5]
+        pygame.image.load('images\\pendu6.jpg'), #[6]
+        pygame.image.load('images\\pendu7.jpg'), #[7]
+        pygame.image.load('images\\pendu8.jpg'), #[8]
+        pygame.image.load('images\\pendu9.jpg'), #[9]
     ]
 
     # settings du jeu 
@@ -47,8 +62,8 @@ def jouer_pendu():
     current_image_index = 0
     current_image = images[current_image_index]
     lettres_utilisees = set() #les sets sont souvent utilisés pour contrôler les doublons
-
     running = True #permet d'amorcer la boucle, running deviendra false en fonction des conditions de cette dernière ce qui l'arrêtera
+    
     while running:
         for event in pygame.event.get(): 
             if event.type == pygame.QUIT: #si l'utilisateur appuie sur la croix rouge la boucle arrête de "run" et cela ferme le programme
@@ -71,14 +86,15 @@ def jouer_pendu():
                             current_image = images[current_image_index]    #on met à jours l'image affichée
                         text1 = font.render(" ".join(mot_affiche_liste), True, (0, 0, 0)) #met à jour l'affichage des lettres entrées par l'utilisateur a _ e par exemple, join assemble les _ et les lettres trouvées
                         text3 = font2.render(f'Il reste {tentatives_restantes} tentatives', True, (0, 0, 0)) #met à jour le texte de tenta.. entrant la valeur de la variable tenta..
-
-        # conditions de victoire ou de défaite (les prints s'affichent dans le terminal)
+        
+                # conditions de victoire ou de défaite
         if '_' not in mot_affiche_liste:
-            print("Victoire !")
+            afficher_resultat(screen, True, mot)
             running = False
         elif tentatives_restantes <= 0:
-            print(f"Défaite ! Le mot était: {mot}")
+            afficher_resultat(screen, False, mot)
             running = False
+
         
         # si aucune des deux conditions n'est respectée, la boucle redémarre. 
 
