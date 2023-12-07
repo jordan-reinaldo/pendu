@@ -107,6 +107,15 @@ def jouer_pendu():
 def start_the_game():
     jouer_pendu()
 
+# Menu principal
+def menu_principal():
+    menu = pygame_menu.Menu('Bienvenue', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
+    menu.add.text_input('Nom :', default='Joueur 1')
+    menu.add.button('Jouer', start_the_game)
+    menu.add.button('Ajouter un mot', ajouter_un_mot)
+    menu.add.button('Quitter', pygame_menu.events.EXIT)
+    menu.mainloop(screen)
+
 # Menu de fin de partie
 def menu_fin_de_partie(gagne, mot):
     fin_text = "Victoire!" if gagne else f"Défaite! Le mot était: {mot}"
@@ -115,13 +124,34 @@ def menu_fin_de_partie(gagne, mot):
     menu.add.button('Quitter', pygame_menu.events.EXIT)
     menu.mainloop(screen)
 
-# Menu principal
-def menu_principal():
-    menu = pygame_menu.Menu('Bienvenue', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
-    menu.add.text_input('Nom :', default='Joueur 1')
-    menu.add.button('Jouer', start_the_game)
-    menu.add.button('Quitter', pygame_menu.events.EXIT)
-    menu.mainloop(screen)
+# Fonction pour ajouter un mot au fichier
+def action_ajouter(mot):
+    mot = mot.lower()
+    # Vérifie que le mot n'est pas vide et contient uniquement des lettres
+    if mot and mot.isalpha():
+        with open("mots.txt", "a") as fichier:
+            fichier.write(f"\n{mot}")  # Ajoute le mot à une nouvelle ligne
+        print(f"Mot '{mot}' ajouté avec succès.")
+    else:
+        print(f"Erreur: '{mot}' n'est pas un mot valide.")
+        
+
+# Menu pour ajouter un mot
+def ajouter_un_mot():
+    menu_ajout = pygame_menu.Menu('Ajouter un Mot', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
+    
+    def onreturn(user_input):
+        # Obtient le mot du champ de texte pour l'ajouter au fichier
+        action_ajouter(user_input.get_value())  # Utilisez get_value() pour obtenir la valeur du champ de texte
+
+    # Ajoute un champ de saisie avec une fonction de retour personnalisée
+    user_input = menu_ajout.add.text_input('Mot :', maxchar=10)  # Vous pouvez ajuster maxchar selon vos besoins
+    menu_ajout.add.button('Ajouter', lambda: onreturn(user_input))  # Utilise une lambda pour passer l'input
+    
+    menu_ajout.add.button('Retour', menu_principal)
+    menu_ajout.mainloop(screen)
+
+
 
 # Lancement du menu principal
 menu_principal()
