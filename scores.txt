@@ -1,0 +1,5 @@
+Joueur 1: -25
+Joueur 1: -60
+Joueur 1: 0
+Joueur 1: 0
+Joueur 1: -5
