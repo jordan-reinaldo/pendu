@@ -143,13 +143,14 @@ def afficher_scores():
 # Menu pour ajouter un mot
 def ajouter_un_mot():
     menu_ajout = pygame_menu.Menu('Ajouter un Mot', 400, 300, theme=pygame_menu.themes.THEME_BLUE)
-    def onreturn(user_input):
-        action_ajouter(user_input.get_value())
-        menu_ajout.reset(1)  # Reset pour effacer le texte entré
     user_input = menu_ajout.add.text_input('Mot :', maxchar=10)
-    menu_ajout.add.button('Ajouter', lambda: onreturn(user_input))
+    menu_ajout.add.button('Ajouter', lambda: onreturn(menu_ajout, user_input))
     menu_ajout.add.button('Retour', menu_principal)
     menu_ajout.mainloop(screen)
+
+def onreturn(menu_ajout, user_input):
+    action_ajouter(user_input.get_value())
+    menu_ajout.reset(1)
 
 
 

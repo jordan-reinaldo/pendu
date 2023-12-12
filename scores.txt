@@ -3,3 +3,12 @@ Joueur 1: -60
 Joueur 1: 0
 Joueur 1: 0
 Joueur 1: -5
+Joueur 1: -25
+Joueur 1: -15
+Joueur 1: 10
+Joueur 1: -35
+Joueur 1: -25
+Joueur 1: -15
+Joueur 1: -45
+Joueur 1: -60
+Joueur 1: -5
