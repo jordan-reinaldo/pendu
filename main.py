@@ -93,6 +93,7 @@ def jouer_pendu():
                             current_image_index = 9 - tentatives_restantes
                         else:
                             current_image_index = 6 - tentatives_restantes + 3
+                            
                         if current_image_index < 0:
                             current_image_index = 0
                         if current_image_index >= len(images):
@@ -170,8 +171,7 @@ def action_ajouter(mot):
 def afficher_message_temporaire(message, duree=2000):
     text_message = font2.render(message, True, (0, 0, 0))
     screen.fill((255, 255, 255))
-    screen.blit(text_message, (screen_width // 2 - text_message.get_width() // 2,
-                               screen_height // 2 - text_message.get_height() // 2))
+    screen.blit(text_message, (screen_width // 2 - text_message.get_width() // 2, screen_height // 2 - text_message.get_height() // 2))
     pygame.display.update()
     pygame.time.wait(duree)
 
