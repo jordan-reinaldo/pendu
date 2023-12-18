@@ -90,8 +90,9 @@ def jouer_pendu():
                         score -= 5 * multiplicateur
                         tentatives_restantes -= 1 # change la valeur de la variable tentatives_restantes en lui enlevant 1
                         if difficulte == "normal":
-                            current_image_index = 9 - tentatives_restantes  # nous avons 10 images donc [0] à [9] vu que nous réduisons à chaque erreur la valeur de tenta..., #imaginons que l'utilisateur ait fait un fail, l'index image serait 9-8=1 et donc images[1]
-                            current_image_index = 6 - tentatives_restantes + 3 # même chose mais pour le mode difficile
+                            current_image_index = 9 - tentatives_restantes
+                        else:
+                            current_image_index = 6 - tentatives_restantes + 3
                         if current_image_index < 0:
                             current_image_index = 0
                         if current_image_index >= len(images):

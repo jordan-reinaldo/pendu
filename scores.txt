@@ -12,3 +12,21 @@ Joueur 1: -15
 Joueur 1: -45
 Joueur 1: -60
 Joueur 1: -5
+Joueur 1: -35
+test: -60
+Joueur 1: -25
+Joueur 1: 10
+Joueur 1: 25
+Joueur 1: 0
+Joueur 1: 0
+Joueur 1: 70
+Joueur 1: -25
+Joueur 1: -15
+Joueur 1: 0
+Joueur 1: -60
+Joueur 1: -20
+Joueur 1: 0
+Joueur 1: -20
+Joueur 1: -40
+Joueur 1: 0
+Joueur 1: -15
